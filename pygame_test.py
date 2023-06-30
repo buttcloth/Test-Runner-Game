@@ -8,7 +8,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
 
-        self.image = pygame.image.load('player.jpg').convert()
+        self.image = pygame.image.load('player.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (110,200))
         self.rect = self.image.get_rect(midbottom = (200,700))
         self.gravity = 0
@@ -56,7 +56,7 @@ def display_score():
     score_rect = score_sfc.get_rect(center = (800, 200))
     screen.blit(score_sfc, score_rect)
 
-def obstacle_movement(obstacle_list):
+"""def obstacle_movement(obstacle_list):
     if obstacle_list:
         for obstacle_rect in obstacle_list:
             obstacle_rect.x -= 8
@@ -70,7 +70,7 @@ def obstacle_movement(obstacle_list):
 
         return obstacle_list
     else:
-        return []
+        return []"""
     
 """def collisions(player, obstacles):
     if obstacles:
@@ -123,7 +123,7 @@ car_sfc = pygame.transform.scale(car_sfc, (225,69))
 obstacle_rect_list = []"""
 
 #player stuff
-player_sfc = pygame.image.load('player.jpg').convert()
+player_sfc = pygame.image.load('player.png').convert_alpha()
 player_sfc = pygame.transform.scale(player_sfc, (110,200))
 """player_rect = player_sfc.get_rect(midbottom = (200,700))
 player_gravity = 0
@@ -145,12 +145,11 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        if game_active:
+        # if game_active:
             """if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE and player_rect.bottom >= 700:
                         player_gravity = -26"""
-        else:
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+        if not game_active and event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 game_active = True
                 start_time = int(pygame.time.get_ticks() / 1000)
         if event.type == obstacle_timer and game_active:
